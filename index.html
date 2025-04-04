@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Hit Analysis - Parallel Coordinates</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-parallel-coordinates@1.0.0/dist/d3-parallel-coordinates.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Spotify Hit Analysis - Parallel Coordinates</h1>
+        <div class="description">
+            <p>This visualization shows the relationship between various audio features and platform success. 
+               A song is considered a "Hit" if it performs well on 5 or more platforms.</p>
+        </div>
+        <div id="visualization"></div>
+        <div class="legend">
+            <div class="legend-item">
+                <span class="legend-color hit"></span>
+                <span>Multi-Platform Hit</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-color non-hit"></span>
+                <span>Not a Multi-Platform Hit</span>
+            </div>
+        </div>
+    </div>
+    <script src="js/visualization.js"></script>
+</body>
+</html> 

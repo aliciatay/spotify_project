@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happiness Leaderboard (Compact)</title>
+    <link rel="stylesheet" href="css/compact.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <!-- Force cache busting for CSS and JS -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <!-- Inline CSS fixes for immediate effect -->
+    <style>
+        /* Fix for rank and country name overlap */
+        .y-axis text {
+            padding-right: 20px !important;
+            transform: translate(-20px, 0) !important;
+        }
+        
+        .rank-label {
+            fill: #888 !important;
+            font-weight: normal !important;
+        }
+        
+        /* Make sure there's only one button icon */
+        #play-button::before,
+        #play-button span,
+        #play-button div {
+            display: none !important;
+        }
+        
+        /* Clean button content */
+        #play-button {
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="compact-container">
+        <!-- Top row with filters and simplified controls -->
+        <div class="top-control-bar">
+            <!-- Country filter with more space -->
+            <div class="compact-filter">
+                <label for="country-select">Country:</label>
+                <select id="country-select">
+                    <option value="">None (Show All)</option>
+                </select>
+            </div>
+            
+            <!-- Minimized controls - only play and reload + year display -->
+            <div class="controls-group">
+                <button id="play-button" title="Play/Pause animation">▶</button>
+                <span id="year-display" class="year-display">2015</span>
+                <button id="reload-button" class="reload-btn" title="Reload visualization">↻</button>
+            </div>
+        </div>
+
+        <!-- Main visualization area (maximized) -->
+        <div class="chart-container">
+            <!-- Main chart area -->
+            <div id="leaderboard-chart" class="compact-chart"></div>
+            
+            <!-- X-axis legend -->
+            <div class="x-axis-legend">Happiness Score</div>
+        </div>
+        
+        <!-- Region color legend (full width layout) -->
+        <div class="compact-legend" id="region-legend">
+            <!-- Legend items will be added dynamically -->
+        </div>
+    </div>
+
+    <!-- Tooltip for bar hover -->
+    <div id="tooltip" style="display: none;"></div>
+
+    <!-- Initialize with compact mode -->
+    <script>
+        window.isCompactMode = true;
+        
+        // Extra script to enforce proper button behavior
+        window.addEventListener('DOMContentLoaded', function() {
+            const playButton = document.getElementById('play-button');
+            if (playButton) {
+                // Completely clear any content
+                playButton.innerHTML = '';
+                playButton.textContent = '▶';
+            }
+        });
+    </script>
+    <script src="js/leaderboard.js"></script>
+</body>
+</html> 

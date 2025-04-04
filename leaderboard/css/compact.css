@@ -1,0 +1,210 @@
+/* Compact visualization styles for Tableau embedding */
+.compact-container {
+    font-family: 'Tableau Book', 'Segoe UI', Tahoma, sans-serif;
+    width: 480px;
+    height: 455px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 12px;
+    background-color: #fff;
+    overflow: hidden;
+}
+
+/* Combined top control bar */
+.top-control-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 8px;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #eee;
+    height: 34px;
+}
+
+/* Filter section */
+.compact-filter {
+    display: flex;
+    align-items: center;
+    width: 320px; /* Wider to accommodate longer country names */
+    flex-grow: 1;
+}
+
+.compact-filter label {
+    font-size: 12px;
+    margin-right: 8px;
+    white-space: nowrap;
+}
+
+.compact-filter select {
+    width: 280px; /* Wider dropdown for country names */
+    height: 24px;
+    font-size: 12px;
+    padding: 0 6px;
+    text-overflow: ellipsis;
+}
+
+/* Controls group with buttons and year */
+.controls-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 8px;
+}
+
+/* Simple year display */
+.year-display {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    min-width: 45px;
+    text-align: center;
+}
+
+/* Button styles */
+button {
+    height: 24px;
+    width: 24px;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+button:hover {
+    background-color: #e0e0e0;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.reload-btn {
+    height: 24px;
+    width: 24px;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.reload-btn:hover {
+    background-color: #e0e0e0;
+}
+
+/* Chart container - holds the main chart and x-axis legend */
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Main chart area (maximized height) */
+.compact-chart {
+    flex-grow: 1;
+    height: 360px; /* Increased height for more countries */
+    overflow: hidden;
+    position: relative;
+}
+
+/* X-axis legend */
+.x-axis-legend {
+    text-align: center;
+    font-size: 11px;
+    color: #555;
+    padding: 3px 0;
+    background-color: #f9f9f9;
+    border-top: 1px solid #eee;
+}
+
+/* Full width region legend */
+.compact-legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 3px 8px;
+    padding: 4px 10px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #eee;
+    max-height: 58px; /* Slightly reduced */
+    overflow-y: auto;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 11px;
+    margin: 1px 0;
+    width: 23%; /* 4 columns for better use of space */
+}
+
+.legend-color {
+    width: 10px;
+    height: 10px;
+    margin-right: 4px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.legend-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Styling for the chart SVG elements */
+.axis text {
+    font-size: 10px;
+}
+
+.axis line, .axis path {
+    stroke: #ccc;
+    stroke-width: 0.5;
+}
+
+.x-axis text {
+    font-size: 10px;
+}
+
+.y-axis text {
+    font-size: 11px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 135px; /* Ensure text doesn't overlap with bars */
+    padding-right: 15px; /* Increase padding to separate from rank numbers */
+}
+
+/* Rank labels - moved much further left */
+.rank-label {
+    font-size: 10px;
+    fill: #888; /* Lighter color */
+    font-weight: normal;
+}
+
+/* Score labels */
+.score-label {
+    font-size: 11px;
+    fill: #333;
+}
+
+#tooltip {
+    position: absolute;
+    display: none;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px 8px;
+    font-size: 11px;
+    pointer-events: none;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Data Test</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <h1>Testing CSV Data Load</h1>
+    <div id="result"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Attempting to load data...';
+
+            // Try different paths
+            tryLoadCSV('./complete_world_happiness.csv')
+                .catch(() => tryLoadCSV('complete_world_happiness.csv'))
+                .catch(() => tryLoadCSV('../complete_world_happiness.csv'))
+                .catch(error => {
+                    resultDiv.innerHTML = `
+                        <p style="color: red;">Failed to load data from any path:</p>
+                        <p>${error.message}</p>
+                        <p>Please check console for more details.</p>
+                    `;
+                });
+
+            function tryLoadCSV(path) {
+                return d3.csv(path)
+                    .then(data => {
+                        if (data && data.length > 0) {
+                            resultDiv.innerHTML = `
+                                <p style="color: green;">Successfully loaded data from: ${path}</p>
+                                <p>Found ${data.length} records</p>
+                                <p>First record: ${JSON.stringify(data[0])}</p>
+                            `;
+                            console.log("Data loaded successfully from", path, data.slice(0, 5));
+                            return data;
+                        } else {
+                            throw new Error(`No data found at ${path}`);
+                        }
+                    });
+            }
+        });
+    </script>
+</body>
+</html> 

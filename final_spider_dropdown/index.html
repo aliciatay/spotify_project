@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Happiness Factors Correlation Spider Chart</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+    /* Additional styles to override headers */
+    h1, .description {
+        display: none;
+    }
+    .container {
+        padding-top: 5px;
+        display: flex;
+        flex-direction: column;
+    }
+    .filters {
+        background-color: #f8f8f8;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+    /* Improve filter label clickability by making it part of the dropdown */
+    .filter-item {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+    .filter-label {
+        font-weight: normal;
+        font-size: 12px;
+        margin-right: 5px;
+        cursor: pointer; /* Show pointer cursor on hover */
+        position: relative;
+        z-index: 1;
+    }
+    /* Make labels clickable by connecting them to their dropdowns */
+    .filter-label:hover + select,
+    .filter-label:active + select {
+        border-color: #aaa;
+    }
+    /* Style for the dropdowns with larger clickable area */
+    select {
+        min-width: 150px;
+        padding: 8px 14px; /* Increased padding for larger touch target */
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 12px;
+        background-color: white;
+        cursor: pointer;
+        -webkit-appearance: menulist-button; /* Shows the dropdown arrow */
+        appearance: menulist-button;
+        height: 36px; /* Fixed height for better touch target */
+    }
+    /* Add a hover effect to make it clear it's clickable */
+    select:hover {
+        border-color: #aaa;
+        background-color: #f5f5f5;
+    }
+    /* Style for the reload button with larger clickable area */
+    .reload-button {
+        width: 36px; /* Increased size */
+        height: 36px; /* Increased size */
+        background-color: #f5f5f5;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 16px;
+        padding: 0;
+        transition: background-color 0.2s;
+    }
+    .reload-button:hover {
+        background-color: #e0e0e0;
+    }
+    /* Add a subtle ripple effect for better feedback */
+    .reload-button:active {
+        background-color: #d0d0d0;
+        transform: scale(0.95);
+    }
+    .chart-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0;
+    }
+    #spider-chart {
+        width: 100%;
+        height: 460px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="filters">
+            <div class="filter-item">
+                <label for="country-select" class="filter-label">Country:</label>
+                <select id="country-select"></select>
+            </div>
+            
+            <div class="filter-item">
+                <label for="year-select" class="filter-label">Year:</label>
+                <select id="year-select">
+                    <option value="All">All</option>
+                    <!-- Year options will be dynamically populated -->
+                </select>
+            </div>
+            
+            <button class="reload-button" title="Reload Page">
+                ↻
+            </button>
+        </div>
+        
+        <div class="chart-container">
+            <div id="spider-chart"></div>
+        </div>
+    </div>
+
+    <script src="js/spider-chart.js"></script>
+    <script>
+        // Force country level selection
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                // Set default values
+                const levelSelect = document.getElementById('level-select');
+                if (levelSelect) {
+                    levelSelect.value = 'By Country';
+                    // Trigger change event
+                    const event = new Event('change');
+                    levelSelect.dispatchEvent(event);
+                }
+                
+                // Make labels clickable by triggering the dropdown when clicked
+                document.querySelectorAll('.filter-label').forEach(label => {
+                    label.addEventListener('click', function() {
+                        const selectId = this.getAttribute('for');
+                        const select = document.getElementById(selectId);
+                        if (select) {
+                            // Simulate a click on the select element
+                            select.click();
+                        }
+                    });
+                });
+            }, 100);
+        });
+    </script>
+</body>
+</html>

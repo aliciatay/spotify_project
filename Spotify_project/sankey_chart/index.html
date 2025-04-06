@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platforms to Genres - Hit Song Distribution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        console.log("Parallel sets visualization page loaded");
+        
+        // Handle Ethereum wallet extensions that might cause issues
+        if (window.ethereum) {
+            try {
+                // Make a local copy if it exists
+                const originalEthereum = window.ethereum;
+                
+                // Define a getter-only property to prevent errors
+                Object.defineProperty(window, 'ethereum', {
+                    get: function() {
+                        return originalEthereum;
+                    },
+                    configurable: true
+                });
+                
+                console.log("Protected ethereum property from redefinition");
+            } catch (e) {
+                console.warn("Could not protect ethereum property:", e);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="chart-container">
+        <div id="sankey-chart"></div>
+    </div>
+    
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://unpkg.com/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+    <script src="load_data.js"></script>
+    <script src="process_data.js"></script>
+    <script src="visualization.js"></script>
+</body>
+</html> 
